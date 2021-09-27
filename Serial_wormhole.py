@@ -49,7 +49,8 @@ def mouse_swipe(From,To,delay=0.1):
     time.sleep(delay)
     mouse_release()
 
-def touch(X_Position,Y_Position,times=1,interval=0.6):
+def touch(Pos,times=1,interval=0.6):
+    X_Position,Y_Position = Pos
     for i in range(times):
         #mouse_move((X_Position,Y_Position))
         #mouse_click()       

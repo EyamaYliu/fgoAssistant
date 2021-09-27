@@ -14,12 +14,12 @@ Base_func.init_wormhole()
 def FGO_process(times=1,servant="Caster_Altria"):
     for i in range(times):
         times-=1
-        mainOperations.enter_battle()
-        mainOperations.apple_feed()
-        # mainOperations.find_friend(servant)
+        # mainOperations.enter_battle()
+        # mainOperations.apple_feed()
+        mainOperations.find_friend(servant)
         
-        # bf.battle_script(servant)        
-        # mainOperations.quit_battle()                
+        bf.battle_script(servant)        
+        mainOperations.quit_battle()                
         print(" ")
         print(" {} times of battles remain.".format(times))
         print(" Currently {} Gold Apples used, {} Silver Apples used, {} Crafts droped.".format(gc.num_GoldApple_used,gc.num_SilverApple_used,gc.num_Craft))

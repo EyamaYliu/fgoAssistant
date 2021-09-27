@@ -33,18 +33,19 @@ def enter_battle():
     fuse.reset()
     
     if menuFlag:
-        LastOrderFlag,Position3 = Base_func.match_template("LastOrder_sign")
+        LastOrderFlag,lastOrderPos = Base_func.match_template("LastOrder_sign")
         print("enter lastOrder")
         if LastOrderFlag:
-            Serial.touch(Position3[0]+130,Position3[1]+50)
+            levelPos = [lastOrderPos[0]+130,lastOrderPos[1]+50]
+            Serial.touch(levelPos)
             print("Entered last order success")
             return "LastOrder"
         else:
-            Serial.touch(menuPos[0],menuPos[1])
+            Serial.touch(menuPos)
             print("Entered default success")
             return "Default"
     elif reenterFlag:
-        Serial.touch(reEnterPos[0],reEnterPos[1]) 
+        Serial.touch(reEnterPos) 
         print("Reentered battle success") 
         return "Reenter"
     else:
@@ -85,18 +86,18 @@ def apple_feed():
     
     silverFlag,silverPosition = Base_func.match_template("Silver_apple")          #check similarity between highlight and normal icon   
     if silverFlag:
-        Serial.touch(silverPosition[0],silverPosition[1])
+        Serial.touch(silverPosition)
         time.sleep(1.5)            
-        Serial.touch(confirmBtn[0],confirmBtn[1])   #决定
+        Serial.touch(confirmBtn)   #决定
         gc.num_SilverApple_used += 1
         print(" Feed silver apple success")
         return
 
     goldFlag,goldPosition = Base_func.match_template("Gold_apple")
     if goldFlag:
-        Serial.touch(goldPosition[0],goldPosition[1])
+        Serial.touch(goldPosition)
         time.sleep(0.5)                
-        Serial.touch(confirmBtn[0],confirmBtn[1])   #决定
+        Serial.touch(confirmBtn)   #决定
         gc.num_GoldApple_used += 1
         print(" Feed gold apple success")
         return
@@ -108,26 +109,28 @@ def apple_feed():
         
 def find_friend(servant):
     WaitForFriendShowReady()    
-    print("Finding Servant")
+    print("Looking for " + servant)
     foundFlag,servantPos = Base_func.match_template(servant+"_skill_level")
 
     attemptnum = 1
     #找310CBA直到找到为止
+    refreshBtn = gc.refreshFriendBtnPos
+    decideRefBtn = gc.decideRefeshBtnPos
 
     while not(foundFlag):
         print(" Didn't find {}, retry. Attempt{}".format(servant,attemptnum))
         #Flag,Position = Base_func.match_template('Refresh_friend')
-        Serial.touch(720,110)   #refresh     
+        Serial.touch(refreshBtn)   #refresh     
         time.sleep(0.5)
         #Flag,Position = Base_func.match_template('Refresh_decide')
-        Serial.touch(705,475)   #decide
+        Serial.touch(decideRefBtn)   #decide
         WaitForFriendShowReady()   
         foundFlag,Position = Base_func.match_template(servant+"_skill_level")
         attemptnum += 1
         time.sleep(11) 
         
     print(" Success find",servant)
-    Serial.touch(servantPos[0],servantPos[1])
+    Serial.touch(servantPos)
     time.sleep(1.5)               
 
         

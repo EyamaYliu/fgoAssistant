@@ -59,7 +59,6 @@ def match_template(filename,show_switch=True,err=0.77):
     #print('\nFuse value now: %d' % fuse.value)###########################################
     temppath = gc.template_path_str + filename+".jpg"
     img = window_capture()
-    print("write")
     cv.imwrite(gc.template_path_str +"test.jpg",img)
     # cv.imshow("Image", img) #for testing
     #img = cv.imread(imgpath)

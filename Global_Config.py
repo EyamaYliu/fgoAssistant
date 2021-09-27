@@ -8,7 +8,7 @@ import win32con, win32api
 
 
 default_dir = r"E:\MyGitProjects\fgoAssistant"
-template_path_str = "E:/MyGitProjects/fgoAssistant/Template/"
+template_path_str = "E:/MyGitProjects/fgoAssistant/Template/iphone12_Templates/"
 const_phone = "iPhone12"
 
 
@@ -34,6 +34,8 @@ materialFilterInit_bool = True
 servantFilterInit_bool = True
 
 confirmUseAppleBtnPos = [600,500]
+refreshFriendBtnPos = [560,180]
+decideRefeshBtnPos = [605,485]
 
 
 #请修改变量default_dir，template_path_str，const_phone
