@@ -7,16 +7,16 @@ Created on Sun Aug  1 22:16:33 2021
 import win32con, win32api
 
 
-default_dir = r"E:\MyGitProjects\FGO_Bluetooth_Assistant"
-template_path_str = "E:/MyGitProjects/FGO_Bluetooth_Assistant/Template/"
+default_dir = r"E:\MyGitProjects\fgoAssistant"
+template_path_str = "E:/MyGitProjects/fgoAssistant/Template/"
 const_phone = "iPhone12"
 
 
 
 
-config = {"iPhone6":{"name":"Wormhole(iPhone)","length":1122,"bias":0},
-          "iPhone12":{"name":"Wormhole(Eyama Phone)","length":1357,"bias":117},
-          "iPadmini4":{"name":"Wormhole(iPad (2))","length":1358,"bias":117}}
+config = {
+          "iPhone12":{"name":"Wormhole(Eyama Phone)","length":1153,"bias":117}
+          }
 
 const_position = win32api.GetSystemMetrics(win32con.SM_CXSCREEN) - \
                     (config[const_phone]["length"])
@@ -33,6 +33,7 @@ enhancedFilterInit_bool = True
 materialFilterInit_bool = True
 servantFilterInit_bool = True
 
+confirmUseAppleBtnPos = [600,500]
 
 
 #请修改变量default_dir，template_path_str，const_phone

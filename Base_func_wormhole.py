@@ -54,46 +54,13 @@ class Fuse:
             
 
 def match_template(filename,show_switch=True,err=0.77):
-    '''
-    Given the file name of the template, attempts to find the portion 
-    that matchs the template and returns the result
-    尝试在截图中匹配目标模板，返回匹配的结果与具体位置
-    
-    
-    Parameters
-    ----------
-    filename : str
-        模板的无后缀文件名
-        File name of the template, without postfix
-    show_switch : bool, optional
-        Bool variable for displaying the matching image. 
-        This variable is used for debugging and shouldn't be changed otherwise.
-        The default is False.
-        是否显示匹配的图片部分。
-        此参数为测试用，正常使用时无需改动。
-        默认值为 False。
-    err : float, optional
-        Minimum rate of matching. 
-        The default is 0.85.
-        与模板的最低匹配度。
-        默认为 0.85。
-
-    Returns
-    -------
-    bool
-        The final status of matching
-        是否有图片部分与模板匹配
-    (int, int)
-        Coordinates of the center of the matching portion of the picture
-        与模板匹配的图片部分的中心坐标
-
-    '''
     
     #fuse.increase() 
     #print('\nFuse value now: %d' % fuse.value)###########################################
     temppath = gc.template_path_str + filename+".jpg"
     img = window_capture()
-    # cv.imwrite(gc.template_path_str +"test.jpg",img)
+    print("write")
+    cv.imwrite(gc.template_path_str +"test.jpg",img)
     # cv.imshow("Image", img) #for testing
     #img = cv.imread(imgpath)
     player_template = cv.imread(temppath)
@@ -101,7 +68,7 @@ def match_template(filename,show_switch=True,err=0.77):
     # print("matching "+filename)
 
     min_val, max_val, min_loc, max_loc = cv.minMaxLoc(player)
-
+    print(max_val,filename)
     #当图片中有与模板匹配度超过95%的部分时：
     if max_val>err:
 
@@ -170,9 +137,9 @@ def window_capture():
     img.shape = (height, width, 4)
     img = cv.cvtColor(img, cv.COLOR_RGBA2RGB)
 
-    #img = cv.imread(filename)
-    #截取出ios屏幕区域
-    cropped = img[16:height-26, (21+gc.config[gc.const_phone]["bias"]):width-(21+gc.config[gc.const_phone]["bias"])]  # 裁剪坐标为[y0:y1, x0:x1]
+    # bias = gc.config[gc.const_phone]["bias"]
+    bias = 0
+    cropped = img[16:height-26, (21+bias):width-(21+bias)]  # 裁剪坐标为[y0:y1, x0:x1]
     #cv.imwrite('C:/Users/Paul/Desktop/test/3.jpg', cropped) #for testing
     
     win32gui.DeleteObject(saveBitMap.GetHandle()) #释放内存
