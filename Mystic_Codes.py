@@ -15,15 +15,14 @@ sys.path.append(gc.default_dir)
 def Chaldea_Combat_Uniform(*args):
     def Hanlder(*args):
         if args[0]==1:                     #加攻
-            Serial.touch(780,310)        
+            Serial.touch([670,310])        
         elif args[0]==2:                   #眩晕
-            Serial.touch(850,310)        
+            Serial.touch([730,310])
         elif args[0]==3:                   #换人
-            Serial.touch(900,310)                           
-            Serial.touch(200+(args[1]-1)*140,325)        
-            Serial.touch(200+(args[2]-1)*140,325)        
-            Serial.touch(530,530)
-            
+            Serial.touch([800,310])                           
+            Serial.touch([120+(args[1]-1)*140,325])        
+            Serial.touch([120+(args[2]-1)*140,325])        
+            Serial.touch([450,530])
     Hanlder(*args)
  
 #热带夏日

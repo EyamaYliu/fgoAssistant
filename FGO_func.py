@@ -45,6 +45,8 @@ def enter_battle():
             print("Entered default success")
             return "Default"
     elif reenterFlag:
+        print(reEnterPos)
+        reEnterPos = [600,500]
         Serial.touch(reEnterPos) 
         print("Reentered battle success") 
         return "Reenter"
@@ -56,7 +58,7 @@ def enter_battle():
 def WaitForBattleStart():
     Flag,Position = Base_func.match_template("Attack_button")
     while not(Flag):
-        time.sleep(1)        
+        time.sleep(0.3)        
         Flag,Position = Base_func.match_template("Attack_button")  
         fuse.increase()
         fuse.alarm()
@@ -137,10 +139,10 @@ def find_friend(servant):
 def quit_battle():
     print("开始结算本次战斗")
     # time.sleep(15)
-    finFlag,Position = Base_func.match_template("Battlefinish_sign")
+    finFlag,Position = Base_func.match_template("Battlefinish_sign2")
     attackFlag,Position = Base_func.match_template("Attack_button")
     while not(finFlag or attackFlag):
-        finFlag,Position = Base_func.match_template("Battlefinish_sign")
+        finFlag,Position = Base_func.match_template("Battlefinish_sign2")
         attackFlag,Position = Base_func.match_template("Attack_button")
     if finFlag:
         pass
@@ -152,10 +154,22 @@ def quit_battle():
     rainbowFlag,Position = Base_func.match_template("Rainbow_box")  #检测是否掉礼装，若掉落则短信提醒  
     if rainbowFlag:
         gc.num_Craft += 1
-    Serial.touch(936,545,6)    
+    Serial.touch([836,545],6)    
     
-    Serial.touch(235,525,2)                #拒绝好友申请
+    Serial.touch([235,525],2)                #拒绝好友申请
     Serial.mouse_set_zero()         #鼠标复位,防止误差累积
     print(" Quit success")
     time.sleep(1)
 
+
+def battle(servant=""): 
+    startBattleBtn = gc.StartBattleButton
+    print(startBattleBtn)
+    Serial.touch(startBattleBtn)
+    print("start!")
+    # #判断是否进入战斗界面
+    Serial.mouse_set_zero()         #鼠标复位,防止误差累积
+    time.sleep(8)                          #等待战斗开始
+    WaitForBattleStart()    
+    print("battle started")
+    bf.battle_script(servant)

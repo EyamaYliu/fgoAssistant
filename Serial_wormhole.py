@@ -37,6 +37,9 @@ def mouse_release():
 def mouse_set_zero():
     win32api.SetCursorPos([xy_zero[0],xy_zero[1]])
 
+def sync_set_zero():
+    touch([10,200],20,0)
+
 def mouse_move(xy_new,delay = 0.3):
     win32api.SetCursorPos([xy_zero[0]+xy_new[0],xy_zero[1]+xy_new[1]])
     time.sleep(delay)
@@ -55,7 +58,7 @@ def touch(Pos,times=1,interval=0.6):
         #mouse_move((X_Position,Y_Position))
         #mouse_click()       
         win32api.SetCursorPos([xy_zero[0]+X_Position,xy_zero[1]+Y_Position])
-        time.sleep(0.1)
+        time.sleep(0.01)
         win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0,0,0)
         win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0,0,0)
         time.sleep(interval)

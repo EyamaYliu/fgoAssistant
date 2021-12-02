@@ -38,7 +38,7 @@ class Fuse:
     def __init__(self):
         init_wormhole()
         self.value = 0
-        self.tolerant_time = 50     #截取50张图片后仍未发现对应目标则报错
+        self.tolerant_time = 100     #截取50张图片后仍未发现对应目标则报错
                                     #防止程序死在死循环里    
     def increase(self):
         self.value += 1
@@ -139,6 +139,7 @@ def window_capture():
     # bias = gc.config[gc.const_phone]["bias"]
     bias = 0
     cropped = img[16:height-26, (21+bias):width-(21+bias)]  # 裁剪坐标为[y0:y1, x0:x1]
+    # cropped = img[120:height-26, (21+bias):width-(21+bias)]  # 裁剪坐标为[y0:y1, x0:x1]
     #cv.imwrite('C:/Users/Paul/Desktop/test/3.jpg', cropped) #for testing
     
     win32gui.DeleteObject(saveBitMap.GetHandle()) #释放内存

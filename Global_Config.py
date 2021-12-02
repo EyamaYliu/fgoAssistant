@@ -36,6 +36,14 @@ servantFilterInit_bool = True
 confirmUseAppleBtnPos = [600,500]
 refreshFriendBtnPos = [560,180]
 decideRefeshBtnPos = [605,485]
+StartBattleButton = [850,550]
+AttackBtn = [850,550]
+MasterSkillBtn = [876, 325]
+
+resetBtn = [850,257]
+confirmResetBtn = [630,470]
+closeResetDialogBtn = [430,490]
+draw10GiftsBtn = [320,400]
 
 
 #请修改变量default_dir，template_path_str，const_phone
